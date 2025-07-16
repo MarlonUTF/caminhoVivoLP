@@ -210,24 +210,30 @@
     <!-- CTA Section -->
     <section class="cta-section" id="download">
         <div class="container">
-            <h2>Pronto para sua jornada transformadora?</h2>
-            <p>Cadastre-se para receber acesso antecipado e concorra a uma experiência completa no Caminho Iniciático</p>
+            <h2>Entre em contato facilmente!</h2>
+            <p>Envie alguma sugestão ou proposta de parceria com apenas um clique!</p>
             
-            <form class="email-form" id="signupForm">
-                <input type="email" class="email-input" placeholder="Seu melhor e-mail" required>
-                <button type="submit" class="submit-button">Participar <i class="fas fa-arrow-right"></i></button>
+            <form action="https://api.web3forms.com/submit" method="POST" class="form-email">
+
+                <input type="hidden" name="access_key" value="36fc910f-3be1-47d2-9dad-92f43671b465">
+            
+                <input type="text" name="name" placeholder="Seu nome (opcional)">
+                <input type="email" name="email" placeholder="Seu melhor email (opcional)">
+                <p class="alerta">*Caso não seja preenchido, será anônimo; porém, não poderemos lhe responder.</p>
+                <textarea name="message" required placeholder="Sua mensagem"></textarea>
+            
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            
+                <input type="hidden" name="redirect" value="https://marlonutf.github.io/caminhoVivoLP/thanks.html">
+            
+                <button type="submit">Submit Form</button>
+            
             </form>
             
             <p class="cta-note">Ao se inscrever, você concorda com nossos Termos de Uso e Política de Privacidade</p>
             
             <div class="app-download">
-                <a href="#" class="download-btn">
-                    <i class="fab fa-apple"></i>
-                    <div class="download-text">
-                        <span>Será Disponibilizado na</span>
-                        <strong>App Store</strong>
-                    </div>
-                </a>
+                
                 <a href="#" class="download-btn">
                     <i class="fab fa-google-play"></i>
                     <div class="download-text">
