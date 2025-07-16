@@ -992,6 +992,7 @@ footer:before {
     transition: var(--transicao);
     color: var(--branco);
     font-size: 1.2rem;
+    text-decoration: none;
 }
 
 .social-icon:hover {
