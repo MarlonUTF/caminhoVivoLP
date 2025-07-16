@@ -1195,3 +1195,8 @@ footer:before {
         max-width: 300px;
     }
 }
+
+.video{
+    width: 100%;
+    aspect-ratio: 16/9;
+}
