@@ -928,6 +928,7 @@ footer:before {
     line-height: 1.8;
 }
 
+
 .footer-links {
     list-style: none;
 }
@@ -935,6 +936,19 @@ footer:before {
 .footer-links li {
     margin-bottom: 15px;
 }
+
+/* .desenvolvedores-container{
+    width: 100%;
+}
+
+.desenvolvedores-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100%;
+    border: 1px solid red
+} */
 
 .footer-links a {
     color: rgba(255, 255, 255, 0.85);
