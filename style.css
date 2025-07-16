@@ -1200,3 +1200,106 @@ footer:before {
     width: 100%;
     aspect-ratio: 16/9;
 }
+
+/* Estilização do link do GitHub */
+.github-link {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #1a2e4b;
+    margin-bottom: 25px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.github-link::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #3CB371, #2E8B57, #228B22, #3CB371);
+    background-size: 400%;
+    border-radius: 14px;
+    z-index: 0;
+    animation: rotateBorder 3s linear infinite;
+}
+
+.github-link::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background-color: #1a2e4b;
+    border-radius: 10px;
+    z-index: 1;
+    color: white
+}
+
+.github-link a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.github-link a:hover {
+    transform: translateY(-1px);
+}
+
+.github-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+}
+
+.github-link a:hover .github-icon {
+    transform: scale(1.2);
+}
+
+.github-svg {
+    fill: white;
+    transition: fill 0.3s ease;
+}
+
+.github-link a:hover .github-svg {
+    fill: white;
+}
+
+/* Animação da borda giratória */
+@keyframes rotateBorder {
+    0% {
+        background-position: 0 0;
+        transform: rotate(0deg);
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+        transform: rotate(360deg);
+    }
+}
+
+/* Efeito de brilho no hover */
+.github-link:hover::before {
+    animation: rotateBorder 1.5s linear infinite, glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        filter: brightness(1);
+    }
+    100% {
+        filter: brightness(1.4);
+    }
+}
