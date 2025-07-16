@@ -106,9 +106,7 @@ header {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     font-size: 26px;
-    background: linear-gradient(to right, var(--verde), var(--azul-escuro));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #124c7b;
     letter-spacing: -0.5px;
 }
 
