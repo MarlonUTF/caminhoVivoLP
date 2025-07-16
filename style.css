@@ -89,8 +89,6 @@ header {
 .logo-icon {
     width: 45px;
     height: 45px;
-    background: linear-gradient(135deg, var(--verde), var(--azul-escuro));
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -405,9 +403,14 @@ header {
 }
 
 .app-logo {
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    display: flex;
+    justify-content: center;
     margin-bottom: 25px;
     animation: pulse 2s infinite;
+
+    img{
+        height: 50px;
+    }
 }
 
 .app-title {
