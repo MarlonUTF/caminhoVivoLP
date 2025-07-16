@@ -1159,6 +1159,11 @@ footer:before {
     .footer-content {
         gap: 40px;
     }
+    .form-email{
+        input, textarea{
+            min-width: 75%;
+        }
+    }
 }
 
 @media (max-width: 480px) {
@@ -1193,6 +1198,11 @@ footer:before {
     .download-btn {
         width: 100%;
         max-width: 300px;
+    }
+    .form-email{
+        input, textarea{
+            min-width: 100%;
+        }
     }
 }
 
@@ -1301,5 +1311,44 @@ footer:before {
     }
     100% {
         filter: brightness(1.4);
+    }
+}
+
+.alerta{
+    font-size: .75rem !important;
+}
+
+.form-email{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 10px;
+    input, textarea{
+        width: 50%;
+        padding: 15px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+    }
+    textarea{
+        height: 10rem;
+        resize: none;
+    }
+    button{
+        width: fit-content;
+        padding: 15px;
+        font-size: 1rem;
+        border-radius: 10px;
+        background-color: var(--azul-escuro);
+        border: none;
+        color: var(--branco);
+        cursor: pointer;
+        transition: background-color .3s, transform .3s;
+    }
+    button:hover{
+        background-color: var(--azul-medio);
+        transform: scale(110%);
     }
 }
