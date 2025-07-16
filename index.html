@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caminho Vivo - Experiência Transformadora no Caminho Iniciático</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <style>
+        /* Variáveis CSS atualizadas */
+        :root {
+            --verde: #2e8b57;
+            --verde-claro: #3db36b;
+            --vermelho: #e74c3c;
+            --azul-escuro: #1a2e4b;
+            --azul-medio: #2c3e50;
+            --amarelo: #f1c40f;
+            --amarelo-claro: #f39c12;
+            --branco: #FFFFFF;
+            --cinza-claro: #f8f9fa;
+            --cinza-medio: #e9ecef;
+            --cinza-texto: #6c757d;
+            --sombra: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --sombra-destaque: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --borda-arredondada: 12px;
+            --borda-arredondada-grande: 20px;
+            --transicao: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        /* Reset e estilos gerais melhorados */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--azul-escuro);
+            background-color: var(--branco);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-size: 1.05rem;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Header aprimorado */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--sombra);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transicao);
+            backdrop-filter: blur(10px);
+        }
+        
+        .scrolled {
+            padding: 5px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--verde), var(--azul-escuro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--branco);
+            font-size: 1.4rem;
+            transition: var(--transicao);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            background: linear-gradient(to right, var(--verde), var(--azul-escuro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            margin-left: 28px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--azul-escuro);
+            font-weight: 500;
+            transition: var(--transicao);
+            position: relative;
+            padding: 8px 0;
+            font-size: 1.05rem;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--verde);
+            transition: var(--transicao);
+            border-radius: 3px;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--verde);
+        }
+        
+        .cta-button {
+            background: linear-gradient(to right, var(--verde), var(--verde-claro));
+            color: var(--branco);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transicao);
+            display: inline-block;
+            border: none;
+            box-shadow: var(--sombra);
+            font-size: 1.05rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-destaque);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 32px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 4px;
+            width: 100%;
+            background: var(--azul-escuro);
+            border-radius: 3px;
+            transition: var(--transicao);
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+        
+        /* Hero Section aprimorada */
+        .hero {
+            padding: 170px 0 100px;
+            background: linear-gradient(135deg, rgba(27, 46, 75, 0.03) 0%, rgba(60, 157, 95, 0.03) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(46, 139, 87, 0.08) 0%, rgba(27, 46, 75, 0.08) 100%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-text h1 {
+            font-size: clamp(2.7rem, 5.5vw, 4rem);
+            margin-bottom: 25px;
+            color: var(--azul-escuro);
+            line-height: 1.1;
+        }
+        
+        .hero-text h1 span {
+            color: var(--verde);
+            position: relative;
+        }
+        
+        .hero-text h1 span:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: rgba(46, 139, 87, 0.2);
+            z-index: -1;
+        }
+        
+        .hero-text p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--cinza-texto);
+            margin-bottom: 35px;
+            max-width: 90%;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--azul-escuro);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transicao);
+            display: inline-block;
+            border: 2px solid var(--azul-escuro);
+            box-shadow: var(--sombra);
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--azul-escuro);
+            color: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-destaque);
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px 20px;
+            border-radius: var(--borda-arredondada);
+            box-shadow: var(--sombra);
+            backdrop-filter: blur(5px);
+            transition: var(--transicao);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-destaque);
+        }
+        
+        .stat-icon {
+            background: linear-gradient(to right, var(--verde), var(--verde-claro));
+            color: var(--branco);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .stat-item div {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .phone-container {
+            position: relative;
+            width: 320px;
+            height: 640px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        
+        .phone-mockup {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--azul-escuro);
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 12px solid #1a1a1a;
+            transform: rotateY(-5deg) rotateX(5deg);
+            transition: var(--transicao);
+        }
+        
+        .phone-container:hover .phone-mockup {
+            transform: rotateY(0) rotateX(0);
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--verde) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-content {
+            padding: 30px;
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+        
+        .app-logo {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+        
+        .app-title {
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .app-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .app-features {
+            text-align: left;
+            margin-top: 30px;
+        }
+        
+        .app-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            border-radius: 10px;
+            transition: var(--transicao);
+        }
+        
+        .app-feature:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .feature-icon {
+            background-color: var(--amarelo);
+            color: var(--azul-escuro);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1rem;
+        }
+        
+        /* Features Section melhorada */
+        .features {
+            padding: 120px 0;
+            background-color: var(--cinza-claro);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features:before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(241, 196, 15, 0.05) 0%, rgba(46, 139, 87, 0.05) 100%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 70px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            font-size: clamp(2.3rem, 4.5vw, 3rem);
+            margin-bottom: 25px;
+            color: var(--azul-escuro);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--verde), var(--amarelo));
+            border-radius: 3px;
+        }
+        
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--cinza-texto);
+            line-height: 1.6;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            background-color: var(--branco);
+            border-radius: var(--borda-arredondada-grande);
+            padding: 40px 30px;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+            text-align: center;
+            border-top: 5px solid var(--verde);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--verde), var(--amarelo));
+            transition: var(--transicao);
+            transform: translateY(-100%);
+        }
+        
+        .feature-card:hover:after {
+            transform: translateY(0);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--sombra-destaque);
+        }
+        
+        .feature-icon-large {
+            width: 90px;
+            height: 90px;
+            background-color: rgba(60, 157, 95, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: var(--verde);
+            transition: var(--transicao);
+        }
+        
+        .feature-card:hover .feature-icon-large {
+            background-color: rgba(60, 157, 95, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .feature-card h3 {
+            font-size: clamp(1.4rem, 2vw, 1.7rem);
+            margin-bottom: 20px;
+            color: var(--azul-escuro);
+        }
+        
+        .feature-card p {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            color: var(--cinza-texto);
+        }
+        
+        /* How It Works aprimorado */
+        .how-it-works {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            position: relative;
+            overflow: hidden;
+            color: var(--branco);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 15px;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -20px;
+            width: 40px;
+            height: 5px;
+            background: var(--amarelo);
+            border-radius: 5px;
+        }
+        
+        .step-number {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--amarelo), var(--amarelo-claro));
+            color: var(--azul-escuro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 auto 25px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transicao);
+        }
+        
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .step h3 {
+            margin-bottom: 20px;
+            color: var(--branco);
+            font-size: clamp(1.4rem, 2vw, 1.6rem);
+        }
+        
+        .step p {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
+        /* About Project aprimorado */
+        .about-project {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--branco) 0%, var(--cinza-claro) 100%);
+            position: relative;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(to right, var(--vermelho), #e67e22);
+            color: var(--branco);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            box-shadow: var(--sombra);
+        }
+        
+        .about-text h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            margin-bottom: 25px;
+            color: var(--azul-escuro);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .about-text h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(to right, var(--verde), var(--amarelo));
+            border-radius: 3px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: clamp(1.05rem, 1.7vw, 1.15rem);
+            color: var(--cinza-texto);
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            border-radius: var(--borda-arredondada-grande);
+            overflow: hidden;
+            box-shadow: var(--sombra-destaque);
+            transition: var(--transicao);
+        }
+        
+        .about-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .students-img {
+            max-width: 100%;
+            border-radius: var(--borda-arredondada-grande);
+            transition: var(--transicao);
+        }
+        
+        .about-image:hover .students-img {
+            transform: scale(1.05);
+        }
+        
+        /* CTA Section aprimorada */
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--amarelo) 0%, var(--amarelo-claro) 100%);
+            color: var(--azul-escuro);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cta-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: var(--azul-escuro);
+            border-radius: 3px;
+        }
+        
+        .cta-section p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .email-form {
+            display: flex;
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: var(--sombra-destaque);
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 18px 30px;
+            border: none;
+            font-size: 1.1rem;
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .email-input::placeholder {
+            color: var(--cinza-texto);
+        }
+        
+        .submit-button {
+            background: linear-gradient(to right, var(--azul-escuro), var(--azul-medio));
+            color: var(--branco);
+            padding: 18px 35px;
+            border: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transicao);
+        }
+        
+        .submit-button:hover {
+            background: linear-gradient(to right, var(--azul-medio), var(--azul-escuro));
+            letter-spacing: 1px;
+        }
+        
+        .cta-note {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 20px;
+        }
+        
+        .app-download {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            display: flex;
+            align-items: center;
+            background: var(--azul-escuro);
+            color: var(--branco);
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: var(--transicao);
+            box-shadow: var(--sombra);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-destaque);
+            background: var(--azul-medio);
+        }
+        
+        .download-btn i {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+        
+        .download-text {
+            text-align: left;
+        }
+        
+        .download-text span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            display: block;
+        }
+        
+        .download-text strong {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        /* Footer aprimorado */
+        footer {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            color: var(--branco);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23f8f9fa" fill-opacity="1" d="M0,128L48,138.7C96,149,192,171,288,170.7C384,171,480,149,576,144C672,139,768,149,864,160C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-column h3 {
+            font-size: clamp(1.4rem, 2.5vw, 1.7rem);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--verde);
+            border-radius: 2px;
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: var(--transicao);
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            color: var(--verde);
+            font-size: 0.9rem;
+            transition: var(--transicao);
+        }
+        
+        .footer-links a:hover {
+            color: var(--branco);
+            transform: translateX(5px);
+        }
+        
+        .footer-links a:hover i {
+            transform: translateX(3px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transicao);
+            color: var(--branco);
+            font-size: 1.2rem;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--verde);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            text-align: center;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid var(--amarelo);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Animações */
+        @keyframes float {
+            0% { transform: translateY(0px) rotateY(-5deg) rotateX(5deg); }
+            50% { transform: translateY(-20px) rotateY(5deg) rotateX(-5deg); }
+            100% { transform: translateY(0px) rotateY(-5deg) rotateX(5deg); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsividade melhorada */
+        @media (max-width: 1100px) {
+            .step:not(:last-child):after {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 60px;
+                max-width: 100%;
+            }
+            
+            .hero-text p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-buttons, .hero-stats {
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-top: 50px;
+            }
+            
+            .app-download {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--branco);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding-top: 100px;
+                padding-left: 40px;
+                transition: var(--transicao);
+                box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+            
+            .cta-button {
+                margin-top: 20px;
+            }
+            
+            .email-form {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+            
+            .email-input, .submit-button {
+                width: 100%;
+                border-radius: 0;
+                text-align: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .phone-container {
+                width: 280px;
+                height: 560px;
+            }
+            
+            .footer-content {
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 140px 0 60px;
+            }
+            
+            .features, .how-it-works, .about-project, .cta-section {
+                padding: 80px 0;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .stat-item {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .phone-container {
+                width: 250px;
+                height: 500px;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="logo-text">Caminho Vivo</div>
+                </a>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#features">Recursos</a></li>
+                    <li><a href="#how-it-works">Como Funciona</a></li>
+                    <li><a href="#about">Sobre o Projeto</a></li>
+                    <li><a href="#download">Baixar</a></li>
+                    <a href="#download" class="cta-button">Experimente Grátis</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Transforme sua jornada no <span>Caminho Iniciático</span></h1>
+                    <p>O aplicativo que une tecnologia, cultura e espiritualidade para enriquecer sua experiência no Caminho de Santiago na região de Campo Mourão - PR.</p>
+                    <div class="hero-buttons">
+                        <a href="#download" class="cta-button">Baixar Agora</a>
+                        <a href="#features" class="secondary-button">Saiba Mais</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div>4 cidades conectadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>+1000 peregrinos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div>20 pontos com QR Code</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="phone-container">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="app-content">
+                                    <div class="app-logo">
+                                        <i class="fas fa-mountain"></i>
+                                    </div>
+                                    <h2 class="app-title">Caminho Vivo</h2>
+                                    <p class="app-subtitle">Sua jornada, sua história</p>
+                                    <div class="app-features">
+                                        <div class="app-feature">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-qrcode"></i>
+                                            </div>
+                                            <div>Check-in com QR Code</div>
+                                        </div>
+                                        <div class="app-feature">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-trophy"></i>
+                                            </div>
+                                            <div>Conquistas e recompensas</div>
+                                        </div>
+                                        <div class="app-feature">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-heartbeat"></i>
+                                            </div>
+                                            <div>Monitoramento de saúde</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Uma Experiência Completa</h2>
+                <p class="section-subtitle">Descubra como o Caminho Vivo transforma sua jornada em uma aventura inesquecível</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-large">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Jornada Gamificada</h3>
+                    <p>Complete desafios, desbloqueie conquistas e colete recompensas enquanto explora o caminho.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-large">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>História e Cultura</h3>
+                    <p>Acesse informações históricas e culturais sobre cada ponto do caminho com realidade aumentada.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-large">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança Integrada</h3>
+                    <p>Conecte sua pulseira de saúde para monitoramento e alertas de emergência em tempo real.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-large">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Fomento Regional</h3>
+                    <p>Contribua para o desenvolvimento econômico e turístico das cidades da região.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Como Funciona</h2>
+                <p class="section-subtitle">Sua jornada transformadora em 4 passos simples</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Baixe o App</h3>
+                    <p>Disponível gratuitamente para iOS e Android</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Crie seu Perfil</h3>
+                    <p>Personalize sua experiência de peregrinação</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Comece sua Jornada</h3>
+                    <p>Escolha seu ponto de partida e siga o caminho</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Conquiste e Compartilhe</h3>
+                    <p>Complete desafios e compartilhe suas conquistas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Project -->
+    <section class="about-project" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="badge">Projeto Acadêmico</div>
+                    <h2>Sobre o Projeto</h2>
+                    <p>O Caminho Vivo é um projeto desenvolvido por alunos do curso técnico integrado em Informática da UTFPR - Campus Campo Mourão, no Paraná.</p>
+                    <p>Nosso objetivo é criar uma experiência única para os peregrinos do Caminho Iniciático de Santiago, unindo tecnologia, cultura e espiritualidade em um só lugar.</p>
+                    <p>Este projeto está em desenvolvimento como parte do nosso trabalho acadêmico, e contamos com o apoio de professores e da comunidade local para tornar essa ideia realidade.</p>
+                    <p>Estamos entusiasmados em contribuir para o desenvolvimento turístico e cultural da região, além de oferecer uma experiência mais segura e enriquecedora para todos os peregrinos.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2070&auto=format&fit=crop" alt="Estudantes trabalhando em projeto" class="students-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
+        <div class="container">
+            <h2>Pronto para sua jornada transformadora?</h2>
+            <p>Cadastre-se para receber acesso antecipado e concorra a uma experiência completa no Caminho Iniciático</p>
+            
+            <form class="email-form" id="signupForm">
+                <input type="email" class="email-input" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="submit-button">Participar <i class="fas fa-arrow-right"></i></button>
+            </form>
+            
+            <p class="cta-note">Ao se inscrever, você concorda com nossos Termos de Uso e Política de Privacidade</p>
+            
+            <div class="app-download">
+                <a href="#" class="download-btn">
+                    <i class="fab fa-apple"></i>
+                    <div class="download-text">
+                        <span>Baixe na</span>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+                <a href="#" class="download-btn">
+                    <i class="fab fa-google-play"></i>
+                    <div class="download-text">
+                        <span>Disponível no</span>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Caminho Vivo</h3>
+                    <p>Transformando a experiência de peregrinação no Caminho Iniciático de Santiago na região de Campo Mourão - PR.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Início</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-right"></i> Recursos</a></li>
+                        <li><a href="#how-it-works"><i class="fas fa-chevron-right"></i> Como Funciona</a></li>
+                        <li><a href="#download"><i class="fas fa-chevron-right"></i> Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Cidades Atendidas</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Campo Mourão</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Corumbataí do Sul</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Barbosa Ferraz</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Fênix</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contato@caminhovivo.com.br"><i class="fas fa-envelope"></i> contato@caminhovivo.com.br</a></li>
+                        <li><a href="tel:+5544999999999"><i class="fas fa-phone"></i> (44) 99999-9999</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Campo Mourão - PR, Brasil</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Caminho Vivo. Todos os direitos reservados. | Desenvolvido com ❤️ por alunos da UTFPR</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras Widget -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('hide');
+            }, 1000);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const emailForm = document.getElementById('signupForm');
+        if (emailForm) {
+            emailForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('.email-input');
+                const email = emailInput.value;
+                
+                if (validateEmail(email)) {
+                    // Simulate form submission
+                    this.reset();
+                    
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.innerHTML = `
+                        <div style="position: fixed; top: 20px; right: 20px; background: #2ecc71; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 2000; animation: fadeIn 0.5s;">
+                            <i class="fas fa-check-circle"></i> Obrigado por se inscrever! Em breve enviaremos mais informações.
+                        </div>
+                    `;
+                    document.body.appendChild(successMessage);
+                    
+                    // Remove message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                } else {
+                    alert('Por favor, insira um endereço de e-mail válido.');
+                }
+            });
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Animation on scroll for elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.feature-card, .stat-item, .step, .about-image');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                observer.observe(el);
+            });
+        });
+        
+        // Initialize VLibras
+        document.addEventListener('DOMContentLoaded', function() {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        });
+    </script>
+</body>
+</html>

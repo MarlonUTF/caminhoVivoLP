@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caminho Vivo - Peregrinação</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3CB371; /* Verde principal */
+            --primary-dark: #2E8B57;
+            --secondary: #F5DEB3; /* Bege */
+            --accent: #8B4513; /* Marrom */
+            --light: #FFFFFF;
+            --dark: #333333;
+            --gray: #F0F0F0;
+            --danger: #DC3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            max-width: 480px;
+            margin: 0 auto;
+            padding-bottom: 70px;
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, var(--primary) 0%, var(--primary) 120px, #f8f9fa 120px, #f8f9fa 100%);
+        }
+        
+        /* Header */
+        .app-header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .time-display {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .app-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .user-greeting {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        /* Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            background-color: var(--light);
+            border-top: 1px solid #ddd;
+            z-index: 100;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px 5px;
+            color: #777;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .nav-item i {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+        
+        /* Main Content */
+        .page {
+            padding: 15px;
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .section {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 8px;
+        }
+        
+        /* Weather Section */
+        .weather-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .temp-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .temp-range {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .weather-info {
+            text-align: right;
+        }
+        
+        /* News Section */
+        .news-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-time {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .news-title {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        
+        .news-link {
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        
+        /* Points Section */
+        .points-display {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .points-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .points-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .option-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        .option-card i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        /* Ranking */
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .ranking-position {
+            width: 28px;
+            height: 28px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .ranking-details {
+            flex: 1;
+        }
+        
+        .ranking-name {
+            font-weight: 500;
+        }
+        
+        .ranking-points {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Profile Section */
+        .profile-header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 15px;
+        }
+        
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .profile-age {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .medical-section {
+            background-color: #fff8f8;
+            border-left: 4px solid var(--danger);
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        
+        .medical-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--danger);
+        }
+        
+        .medical-info {
+            font-size: 0.95rem;
+        }
+        
+        /* QR Scanner */
+        .qr-scanner {
+            background-color: #000;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .qr-frame {
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            animation: scan 2s infinite linear;
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            50% { top: 100%; }
+            100% { top: 0; }
+        }
+        
+        .qr-instructions {
+            text-align: center;
+            margin: 15px 0;
+            color: #666;
+        }
+        
+        /* About Section */
+        .about-content {
+            line-height: 1.6;
+        }
+        
+        .about-features {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .about-features li {
+            margin-bottom: 8px;
+        }
+        
+        .partners {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .partner-logo {
+            width: 100px;
+            height: 60px;
+            background-color: #eee;
+            border-radius: 8px;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .achievement-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+        }
+        
+        .achievement-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .achievement-title {
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .achievement-status {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Login Page */
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .app-logo {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .app-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+        
+        .app-tagline {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .login-form {
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .login-options {
+            margin-top: 20px;
+        }
+        
+        .bracelet-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .bracelet-login i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <div class="app-logo">
+                <i class="fas fa-mountain"></i>
+            </div>
+            <div class="app-name">CAMINHO VIVO</div>
+            <div class="app-tagline">Sua jornada, nossa companhia</div>
+            
+            <div class="login-form">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Senha">
+                </div>
+                <button class="btn btn-primary">Entrar</button>
+            </div>
+            
+            <div class="login-options">
+                <button class="btn btn-outline">Criar conta</button>
+                <div class="bracelet-login">
+                    <i class="fas fa-broadcast-tower"></i>
+                    Entrar com pulseira
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main App (hidden initially) -->
+    <div id="app-container" style="display:none;">
+        <!-- Header -->
+        <div class="app-header">
+            <div class="header-top">
+                <div class="time-display">9:41</div>
+                <div><i class="fas fa-wifi"></i> <i class="fas fa-battery-three-quarters"></i></div>
+            </div>
+            <div class="app-title">Caminho Vivo</div>
+            <div class="user-greeting">Olá Peregrino</div>
+        </div>
+        
+        <!-- Home Page -->
+        <div id="home-page" class="page">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-map-marker-alt"></i> PRÓXIMO PONTO A:
+                </div>
+                
+                <div class="weather-card">
+                    <div>
+                        <div class="temp-display">27.4°C</div>
+                        <div class="temp-range">22.4°C / 27.4°C</div>
+                    </div>
+                    <div class="weather-info">
+                        <div><i class="fas fa-wind"></i> ENE-8 km/h</div>
+                        <div><i class="fas fa-cloud-rain"></i> 10% Chuva</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-newspaper"></i> NOTÍCIAS
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-time">9:41</div>
+                    <div class="news-title">Chuva forte afeta estradas de Fênix</div>
+                    <a href="#" class="news-link">Saiba mais</a>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-title">Feira do produtor em Barbosa Ferraz</div>
+                    <a href="#" class="news-link">Saiba mais</a>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-title">5% de desconto no café da manhã</div>
+                    <a href="#" class="news-link">Saiba mais</a>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-qrcode"></i> ESCANEAR QR CODE
+                </div>
+                
+                <div class="qr-scanner">
+                    <div class="qr-frame">
+                        <div class="scanner-line"></div>
+                    </div>
+                </div>
+                
+                <div class="qr-instructions">
+                    Aponte a câmera para um QR Code ao longo da rota para ganhar pontos e descobrir histórias
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Page -->
+        <div id="map-page" class="page">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-map"></i> MAPA DA ROTA
+                </div>
+                
+                <div style="height: 350px; background-color: #e9ecef; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; color: #666;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>Mapa interativo com rota e pontos de interesse</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: var(--primary); border-radius: 50%; margin-right: 8px;"></span>
+                            <span>Você está aqui</span>
+                        </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; margin-right: 8px;"></span>
+                            <span>Próximo ponto</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #ffc107; border-radius: 50%; margin-right: 8px;"></span>
+                            <span>Ponto de QR Code</span>
+                        </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #6c757d; border-radius: 50%; margin-right: 8px;"></span>
+                            <span>Concluído</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-info-circle"></i> PRÓXIMOS PONTOS
+                </div>
+                
+                <div style="padding: 10px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                        <div>
+                            <div style="font-weight: 500;">Santuário Santa Rita de Cássia</div>
+                            <div style="font-size: 0.9rem; color: #666;">Campo Mourão</div>
+                        </div>
+                        <div style="color: var(--primary); font-weight: 500;">2.4 km</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <div style="font-weight: 500;">Catedral São José</div>
+                            <div style="font-size: 0.9rem; color: #666;">Campo Mourão</div>
+                        </div>
+                        <div style="color: #666;">5.8 km</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profile Page -->
+        <div id="profile-page" class="page">
+            <div class="section">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-name">João Pedro</div>
+                    <div class="profile-age">25 anos</div>
+                    
+                    <div class="points-display">
+                        <div class="points-value">825</div>
+                        <div class="points-label">PONTOS</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-heartbeat"></i> INFORMAÇÕES MÉDICAS
+                </div>
+                
+                <div class="medical-section">
+                    <div class="medical-title">Condição especial de saúde:</div>
+                    <div class="medical-info">Diabetes Mellitus-2</div>
+                </div>
+                
+                <div class="medical-section">
+                    <div class="medical-title">Alergia a medicações:</div>
+                    <div class="medical-info">Anestésicos</div>
+                </div>
+                
+                <div class="medical-section">
+                    <div class="medical-title">Medicações constantes:</div>
+                    <div class="medical-info">Insulina</div>
+                </div>
+                
+                <div class="medical-section">
+                    <div class="medical-title">Tipo sanguíneo:</div>
+                    <div class="medical-info">O+</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-trophy"></i> ÁLBUM DE CONQUISTAS
+                </div>
+                
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <div class="achievement-title">Santuário Santa Rita</div>
+                        <div class="achievement-status">Conquistado</div>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <div class="achievement-title">Catedral São José</div>
+                        <div class="achievement-status">A conquistar</div>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <div class="achievement-title">Museu Histórico</div>
+                        <div class="achievement-status">A conquistar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Points Page -->
+        <div id="points-page" class="page">
+            <div class="section">
+                <div class="points-display">
+                    <div class="points-value">825</div>
+                    <div class="points-label">PONTOS ACUMULADOS</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-gift"></i> RECOMPENSAS
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card">
+                        <i class="fas fa-tshirt"></i>
+                        Capava
+                    </div>
+                    
+                    <div class="option-card">
+                        <i class="fas fa-hiking"></i>
+                        Equipamentos
+                    </div>
+                    
+                    <div class="option-card">
+                        <i class="fas fa-mug-hot"></i>
+                        Pim
+                    </div>
+                    
+                    <div class="option-card">
+                        <i class="fas fa-store"></i>
+                        Produtos
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i> RANKING
+                </div>
+                
+                <div class="ranking-item">
+                    <div class="ranking-position">1</div>
+                    <div class="ranking-details">
+                        <div class="ranking-name">Livia Ventura</div>
+                        <div class="ranking-points">1300 pontos</div>
+                    </div>
+                </div>
+                
+                <div class="ranking-item">
+                    <div class="ranking-position">2</div>
+                    <div class="ranking-details">
+                        <div class="ranking-name">Caio Soldanhe</div>
+                        <div class="ranking-points">1245 pontos</div>
+                    </div>
+                </div>
+                
+                <div class="ranking-item">
+                    <div class="ranking-position">3</div>
+                    <div class="ranking-details">
+                        <div class="ranking-name">Estela Morais</div>
+                        <div class="ranking-points">1210 pontos</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="#" style="color: var(--primary); font-weight: 500;">Ver ranking completo</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Page -->
+        <div id="about-page" class="page">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-info-circle"></i> SOBRE NÓS
+                </div>
+                
+                <div class="about-content">
+                    <p>Caminho Vivo é um aplicativo criado para acompanhar você em jornadas únicas — físicas, emocionais e espirituais. Seja na trilha de um peregrino, no passo de um viajante ou na busca por autoconhecimento, o Caminho Vivo transforma cada passo em propósito.</p>
+                    
+                    <p>Combinando tecnologia, natureza e comunidade, o app oferece recursos como:</p>
+                    
+                    <ul class="about-features">
+                        <li>Mapas interativos e pontos de parada</li>
+                        <li>Notícias locais e dicas de trajeto</li>
+                        <li>Sistema de recompensas e gamificação</li>
+                        <li>Ranking entre peregrinos</li>
+                        <li>Conexão com outros viajantes próximos</li>
+                    </ul>
+                    
+                    <p>Valorizamos o caminho tanto quanto o destino. A cada quilômetro, você contribui não só com pontos, mas também com histórias, encontros e aprendizados. E o mais bonito: você nunca está sozinho.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-handshake"></i> PARCEIROS
+                </div>
+                
+                <div class="partners">
+                    <div class="partner-logo">UTFPR</div>
+                    <div class="partner-logo">GOV PR</div>
+                    <div class="partner-logo">DIOCESE</div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem;">
+                    Desenvolvido por alunos da UTFPR (Universidade Tecnológica Federal do Paraná), com apoio do governo do estado do Paraná e Diocese de Campo Mourão.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item" data-page="home-page">
+                <i class="fas fa-home"></i>
+                Início
+            </div>
+            <div class="nav-item" data-page="map-page">
+                <i class="fas fa-map"></i>
+                Mapa
+            </div>
+            <div class="nav-item" data-page="points-page">
+                <i class="fas fa-star"></i>
+                Pontos
+            </div>
+            <div class="nav-item" data-page="profile-page">
+                <i class="fas fa-user"></i>
+                Perfil
+            </div>
+            <div class="nav-item" data-page="about-page">
+                <i class="fas fa-info-circle"></i>
+                Sobre
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simulate login
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('app-container').style.display = 'block';
+            document.querySelector('[data-page="home-page"]').classList.add('active');
+            document.getElementById('home-page').classList.add('active');
+        });
+        
+        // Navigation
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = document.querySelectorAll('.page');
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked nav item
+                this.classList.add('active');
+                
+                // Hide all pages
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Show the selected page
+                const targetPage = this.getAttribute('data-page');
+                document.getElementById(targetPage).classList.add('active');
+            });
+        });
+        
+        // Simulate QR code scanning
+        const qrScanner = document.querySelector('.qr-scanner');
+        qrScanner.addEventListener('click', function() {
+            this.innerHTML = `
+                <div style="text-align: center; color: white; padding: 20px;">
+                    <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;"></i>
+                    <h3>QR Code Escaneado!</h3>
+                    <p>Santuário Nossa Senhora Aparecida</p>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary); margin-top: 10px;">+10 pontos</p>
+                </div>
+            `;
+            
+            // Reset after 3 seconds
+            setTimeout(() => {
+                this.innerHTML = `
+                    <div class="qr-frame">
+                        <div class="scanner-line"></div>
+                    </div>
+                `;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
