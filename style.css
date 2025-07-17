@@ -1180,6 +1180,10 @@ footer:before {
             min-width: 75%;
         }
     }
+    .app-logo img{
+        height: 30px;
+        transform: translateY(15px);
+    }
 }
 
 @media (max-width: 480px) {
